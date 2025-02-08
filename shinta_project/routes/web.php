@@ -15,6 +15,13 @@
 Route::get('/user', 'UserController@index');
 //Route::get ('/user', [UserController::class,'index']);
 
+    Route::get($uri, $callback);
+    Route::post($uri, $callback);
+    Route::put($uri, $callback);
+    Route::patch($uri, $callback);
+    Route::delete($uri, $callback);
+    Route::options($uri, $callback);
+
 
 
             // mengembalikan view 'profile'
