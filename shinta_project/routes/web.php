@@ -12,15 +12,26 @@
     route::get('user/{id}', function ($id) {
         return 'user '.$id;
     });
-Route::get('/user', 'UserController@index');
-//Route::get ('/user', [UserController::class,'index']);
+//Route::get('/user', 'UserController@index');
+Route::get ('/user', [UserController::class,'index']);
 
-    Route::get($uri, $callback);
-    Route::post($uri, $callback);
-    Route::put($uri, $callback);
-    Route::patch($uri, $callback);
-    Route::delete($uri, $callback);
-    Route::options($uri, $callback);
+    // Route::get($uri, $callback);
+    // Route::post($uri, $callback);
+    // Route::put($uri, $callback);
+    // Route::patch($uri, $callback);
+    // Route::delete($uri, $callback);
+    // Route::options($uri, $callback);
+
+    Route::redirect('/coba','/sini');
+    Route::view('/profile','profile');
+    Route::get('/user/{name?}',function($name=null){
+        return $name ? "Hello, $name!" : "Hello, Guest!";
+    });
+    Route::get('/user/{name?}',function($name=shinta){
+        return $name ? "Hello, $name!" : "Hello, Guest!";
+    });
+
+
 
 
 
@@ -29,5 +40,4 @@ Route::get('/user', 'UserController@index');
         //     'nama'  =>  ' Shinta Maria',
         //     'nim' => '  E41231404',
         //     'prodi' => 'Teknik Informatika'
-        // ]);
-    
+        //]);
