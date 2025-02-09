@@ -63,7 +63,7 @@
 
 
 Route::get('user4/{id}', function ($id) {
-    return "User ID: $id"; // Only executed if {id} is numeric...
+    return "User ID: $id"; // Only executed if {id} is numeric
 });
 
 
