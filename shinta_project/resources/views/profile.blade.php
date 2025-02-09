@@ -1,56 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- mendefinisikan charset sebagai utf-8 untuk mendukung karakter indonesia -->
     <meta charset="UTF-8">
-    <!-- mengatur viewport agar responsif di perangkat mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shinta Belajar</title>
     <style>
-        /* gaya untuk elemen body */
         body {
-            font-family: Arial, sans-serif; /* jenis font yang digunakan */
-            display: flex; /* menggunakan flexbox untuk tata letak */
-            justify-content: center; /* mengatur agar konten berada di tengah secara horizontal */
-            align-items: center; /* mengatur agar konten berada di tengah secara vertikal */
-            height: 100vh; /* tinggi body mengisi seluruh viewport */
-            background-color: #48D1CC; /* warna latar belakang tubuh */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #48D1CC;
         }
-        /* gaya untuk container */
         .container {
-            display: flex; /* menggunakan flexbox untuk tata letak */
-            flex-direction: column; /* mengatur konten di dalam container secara vertikal */
-            align-items: center; /* menyelaraskan konten secara horizontal di tengah */
-            position: relative; /* menambahkan posisi relatif agar elemen lain bisa diposisikan berdasarkan ini */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
         }
-        /* gaya untuk logo */
         .logo {
-            width: 150px; /* lebar logo */
-            height: 150px; /* tinggi logo */
-            object-fit: cover; /* memastikan logo tidak terdistorsi */
-            position: absolute; /* logo diposisikan secara absolut */
-            top: -150px; /* menggeser logo ke atas agar tidak menutupi konten */
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            position: absolute;
+            top: -150px;
         }
-        /* gaya untuk card */
         .card {
-            background: white; /* latar belakang */
-            padding: 20px; /*jarak di dalam card */
-            border-radius: 10px; /* sudut card*/
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* bayangan card */
-            text-align: center; /* teks di dalam card agar di tengah*/
-            max-width: 600px; /* lebar maksimal card */
-            position: relative; /* posisi card relatif terhadap elemen lainnya */
-            margin-top: 50px; /*jarak antara card dan logo */
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            margin-top: 50px;
         }
-        /* gaya untuk judul (h2) */
         h2 {
-            color: #333; /* warna teks judul */
+            color: #333;
         }
-        /* gaya untuk paragraf (p) */
         p {
-            font-size: 18px; /* ukuran font */
-            margin: 10px 0; /* jarak atas dan bawah */
-            color: #555; /* warna teks */
+            font-size: 18px;
+            margin: 10px 0;
+            color: #555;
         }
     </style>
 </head>
