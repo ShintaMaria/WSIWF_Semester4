@@ -10,4 +10,9 @@ class UserController extends Controller
     {
         return "Ini adalah halaman User";
     }
+
+    public function show()
+    {
+        return "Ini adalah halaman profil user6.";
+    }
 }
