@@ -23,21 +23,19 @@ Route::get ('/user', [UserController::class,'index']);
     // Route::options($uri, $callback);
 
     Route::redirect('/coba','/sini');
-    Route::view('/profile','profile');
-    Route::get('/user/{name?}',function($name=null){
+
+    Route::get('/profile', function () {
+        return view('profile', [
+            'nama'  => 'Shinta Maria',
+            'nim'   => 'E41231404',
+            'prodi' => 'Teknik Informatika'
+        ]);
+    });
+
+    Route::get('/userrr/{name?}',function($name=null){
         return $name ? "Hello, $name!" : "Hello, Guest!";
     });
-    Route::get('/user/{name?}',function($name=shinta){
+
+    Route::get('/users/{name?}',function($name='shinta'){
         return $name ? "Hello, $name!" : "Hello, Guest!";
     });
-
-
-
-
-
-            // mengembalikan view 'profile'
-        // return view('profile', [
-        //     'nama'  =>  ' Shinta Maria',
-        //     'nim' => '  E41231404',
-        //     'prodi' => 'Teknik Informatika'
-        //]);
