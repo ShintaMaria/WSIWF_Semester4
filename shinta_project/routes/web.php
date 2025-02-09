@@ -80,5 +80,7 @@ Route::get('user5/profile', function () {
     return "Ini adalah halaman profil user 5.";
 })->name('profile.user5');
 
+
+
 Route::get('user6/profile', [UserController::class, 'show'])->name('profile.user6');
 
