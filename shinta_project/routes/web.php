@@ -72,3 +72,13 @@ Route::get('search/{search}', function ($search) {
     return $search;
 })->where('search', '.*');
 
+
+
+use App\Http\Controllers\UserProfileController;
+
+Route::get('user5/profile', function () {
+    return "Ini adalah halaman profil user 5.";
+})->name('profile.user5');
+
+Route::get('user6/profile', [UserProfileController::class, 'show'])->name('profile.user6');
+
