@@ -4,7 +4,7 @@
 
 
 
-    
+
     // mendefinisikan rute untuk URL '/' (root) dengan metode GET
     Route::get('/', function () {
         return view ('Welcome');
@@ -100,9 +100,9 @@ Route::get('user6/profile', [UserController::class, 'show'])->name('profile.user
 //ACARA 4
 
 //generate route ke route bersama
-// Route::get('/user/{id}/profile', function ($id) {
-//     return view('profile', ['id' => $id]);
-// })->name('profile');
+Route::get('/user/{id}/profile', function ($id) {
+    return view('profile', ['id' => $id]);
+})->name('profile');
 
 
 
@@ -113,9 +113,6 @@ Route::get('/redirect-profile', function () {
 
 
 //memeriksa rute saat ini
-// Route::get('/user/{id}/profile', function ($id) {
-//     return view('profile', ['id' => $id]);
-// })->name('profile')->middleware('check.profile');
 Route::get('/user/{id}/profile', function ($id) {
     return view('profile', ['id' => $id]);
 })->name('profile');
