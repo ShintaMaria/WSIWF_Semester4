@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\UserController;
 
-class UserController extends Controller
+class Controller extends BaseController
 {
-    public function index()
-    {
-        return "Ini adalah halaman User";
-    }
-
-    public function show()
-    {
-        return "Ini adalah halaman profil user6.";
-    }
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
