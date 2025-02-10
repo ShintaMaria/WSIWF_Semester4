@@ -2,16 +2,28 @@
     // mengimpor kelas Route dari Laravel untuk mendefinisikan rute aplikasi
     use Illuminate\Support\Facades\Route;
 
+
+
+    
     // mendefinisikan rute untuk URL '/' (root) dengan metode GET
     Route::get('/', function () {
         return view ('Welcome');
     });
+
+
+
     route::get('/foo', function () {
         return 'hello word';
     });
+
+
+
     route::get('user/{id}', function ($id) {
         return 'user '.$id;
     });
+
+
+
     //Route::get('/user', 'UserController@index');
     Route::get ('/user', [UserController::class,'index']);
 
@@ -84,15 +96,21 @@ Route::get('user5/profile', function () {
 Route::get('user6/profile', [UserController::class, 'show'])->name('profile.user6');
 
 
+
 //ACARA 4
+
 //generate route ke route bersama
 // Route::get('/user/{id}/profile', function ($id) {
 //     return view('profile', ['id' => $id]);
 // })->name('profile');
 
+
+
 Route::get('/redirect-profile', function () {
     return redirect()->route('profile', ['id' => 1, 'photos' => 'yes']);
 });
+
+
 
 //memeriksa rute saat ini
 // Route::get('/user/{id}/profile', function ($id) {
@@ -101,6 +119,7 @@ Route::get('/redirect-profile', function () {
 Route::get('/user/{id}/profile', function ($id) {
     return view('profile', ['id' => $id]);
 })->name('profile');
+
 
 
 //Middleware
@@ -114,10 +133,14 @@ Route::middleware(['first', 'second'])->group(function () {
     });
 });
 
+
+
 //namespaces
 Route::namespace('Admin')->group(function (){
     //
 });
+
+
 
 //subdomain routing
 Route::domain('{account}.myapp.com')->group(function (){
@@ -126,12 +149,16 @@ Route::domain('{account}.myapp.com')->group(function (){
     });
 });
 
+
+
 //route prefixes
 Route::domain('{account}.myapp.com')->group(function (){
     Route::get('user', function (){
         //
     });
 });
+
+
 
 //route name prefixes
 Route::name('admin.')->group(function (){
@@ -140,6 +167,7 @@ Route::name('admin.')->group(function (){
     })->name('users');
 });
 
-//tambahan
+
+
 // Route::post('/user/{id}/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::match(['get', 'post'], '/user/{id}/profile/update', [ProfileController::class, 'update'])->name('profile.update');
