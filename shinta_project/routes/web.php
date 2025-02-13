@@ -3,7 +3,7 @@
     use Illuminate\Support\Facades\Route;
 
 
-
+// ACARA 3
 
     // mendefinisikan rute untuk URL '/' (root) dengan metode GET
     Route::get('/', function () {
@@ -112,6 +112,8 @@ Route::get('/redirect-profile', function () {
 
 
 
+//ACARA 5
+
 //memeriksa rute saat ini
 Route::get('/user/{id}/profile', function ($id) {
     return view('profile', ['id' => $id]);
@@ -168,3 +170,7 @@ Route::name('admin.')->group(function (){
 
 // Route::post('/user/{id}/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::match(['get', 'post'], '/user/{id}/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+
+
+// ACARA 6
