@@ -100,7 +100,7 @@ Route::get('user6/profile', [UserController::class, 'show'])->name('profile.user
 //ACARA 4
 
 //generate route ke route bersama
-Route::get('/user/{id}/profile', function ($id) {
+Route::get('/user7/{id}/profile', function ($id) {
     return view('profile', ['id' => $id]);
 })->name('profile');
 
@@ -115,7 +115,7 @@ Route::get('/redirect-profile', function () {
 //ACARA 5
 
 //memeriksa rute saat ini
-Route::get('/user/{id}/profile', function ($id) {
+Route::get('/user8/{id}/profile', function ($id) {
     return view('profile', ['id' => $id]);
 })->name('profile');
 
@@ -127,7 +127,7 @@ Route::middleware(['first', 'second'])->group(function () {
         //
     });
 
-    Route::get('user/profile', function () {
+    Route::get('user9/profile', function () {
         //
     });
 });
@@ -143,7 +143,7 @@ Route::namespace('Admin')->group(function (){
 
 //subdomain routing
 Route::domain('{account}.myapp.com')->group(function (){
-    Route::get('user/{id}', function ($account, $id){
+    Route::get('user10/{id}', function ($account, $id){
         //
     });
 });
@@ -152,7 +152,7 @@ Route::domain('{account}.myapp.com')->group(function (){
 
 //route prefixes
 Route::domain('{account}.myapp.com')->group(function (){
-    Route::get('user', function (){
+    Route::get('user11', function (){
         //
     });
 });
@@ -174,3 +174,4 @@ Route::match(['get', 'post'], '/user/{id}/profile/update', [ProfileController::c
 
 
 // ACARA 6
+Route::get('/user12', 'ManagementUserController@index');
