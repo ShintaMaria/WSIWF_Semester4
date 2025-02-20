@@ -130,3 +130,9 @@
     Route::get('/user12', [ManagementUserController::class, 'index']);
 
     Route::resource('/user13', ManagementUserController::class);
+
+    //ACARA 6
+    Route::get("/home", function() {
+        return view("home");
+    });
+    
