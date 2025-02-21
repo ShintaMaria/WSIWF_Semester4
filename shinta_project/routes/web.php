@@ -137,7 +137,8 @@
     });
     // Route::get('/home', [ManagementUserController::class, 'index']);
     
-Route::group(['namespace'=>'App\Http\Controllers\frontend'],function()
-{
-    Route::resource('home','HomeController');
-});
+    //ACARA 7
+    Route::group(['namespace'=>'App\Http\Controllers\frontend'],function()
+    {
+        Route::resource('/home',HomeController::class);
+    });
