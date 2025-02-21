@@ -15,3 +15,4 @@
     </div>
 </body>
 </html>
+</section><!-- /Contact Section -->
