@@ -135,4 +135,9 @@
     Route::get("/home", function() {
         return view("home");
     });
+    // Route::get('/home', [ManagementUserController::class, 'index']);
     
+Route::group(['namespace'=>'App\Http\Controllers\frontend'],function()
+{
+    Route::resource('home','HomeController');
+});
