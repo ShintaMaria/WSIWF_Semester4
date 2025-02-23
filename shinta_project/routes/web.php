@@ -142,3 +142,9 @@
     {
         Route::resource('/home',HomeController::class);
     });
+
+    //ACARA 8
+    Route::group(['namespace'=>'App\Http\Controllers\backend'],function()
+    {
+        Route::resource('/dashboard',DashboardController::class);
+    });
