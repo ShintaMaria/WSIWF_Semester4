@@ -4,12 +4,13 @@
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\ProfileController;
     use App\Http\Controllers\ManagementUserController;
+    use App\Http\Controllers\Auth\LoginController;
 
     // ACARA 3
 
     // mendefinisikan rute untuk URL '/' (root) dengan metode GET
     Route::get('/', function () {
-        return view('Welcome');
+        return view('welcome');
     });
 
     Route::get('/foo', function () {
@@ -93,15 +94,15 @@
     })->name('profile');
 
     // Middleware
-    Route::middleware(['first', 'second'])->group(function () {
-        Route::get('/', function () {
-            //
-        });
+    // Route::middleware(['first', 'second'])->group(function () {
+    //     Route::get('/', function () {
+    //         //
+    //     });      
 
-        Route::get('user9/profile', function () {
-            //
-        });
-    });
+    //     Route::get('user9/profile', function () {
+    //         //
+    //     });
+    // });
 
     // subdomain routing
     Route::domain('{account}.myapp.com')->group(function () {
@@ -148,3 +149,8 @@
     {
         Route::resource('/dashboard',DashboardController::class);
     });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\LoginController::class, 'showLoginForm'])->name('home');
+Route::post('/home', [App\Http\Controllers\LoginController::class, 'home']);
+
