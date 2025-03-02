@@ -7,6 +7,8 @@
     use App\Http\Controllers\Auth\LoginController;
     use App\Http\Controllers\backend\PengalamanKerjaController;
     use App\Http\Controllers\backend\DashboardController;
+    use App\Http\Controllers\backend\PenddikanController;
+
 
     // ACARA 3
 
