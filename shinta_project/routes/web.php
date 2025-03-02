@@ -5,6 +5,8 @@
     use App\Http\Controllers\ProfileController;
     use App\Http\Controllers\ManagementUserController;
     use App\Http\Controllers\Auth\LoginController;
+    use App\Http\Controllers\backend\PengalamanKerjaController;
+    use App\Http\Controllers\backend\DashboardController;
 
     // ACARA 3
 
@@ -153,4 +155,28 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'showLoginForm'])->name('home');
 Route::post('/home', [App\Http\Controllers\LoginController::class, 'home']);
+
+    //ACARA 13
+    Route::group(['namespace' => 'App\Http\Controllers\backend'], function()  
+{  
+    Route::resource('/dashboard', DashboardController::class);  
+    Route::resource('/pendidikan', PendidikanController::class);  
+    Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);  
+});
+
+// Route::group(['namespace'=>'App\Http\Controllers\backend'],function()
+//     {
+//         Route::resource('/pengalaman',PengalamanKerjaController::class);
+//     });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
+
+    Route::get('/pengalaman-kerja', [PengalamanKerjaController::class, 'index'])->name('pengalaman_kerja.index');
+//     Route::get('/pengalaman_kerja', [PengalamanKerjaController::class, 'index'])->name('pengalaman_kerja.index');
+// Route::get('/pengalaman_kerja/create', [PengalamanKerjaController::class, 'create'])->name('pengalaman_kerja.create');
+// Route::post('/pengalaman_kerja', [PengalamanKerjaController::class, 'store'])->name('pengalaman_kerja.store');
+// Route::get('/pengalaman_kerja/{id}/edit', [PengalamanKerjaController::class, 'edit'])->name('pengalaman_kerja.edit');
+// Route::put('/pengalaman_kerja/{id}', [PengalamanKerjaController::class, 'update'])->name('pengalaman_kerja.update');
+// Route::delete('/pengalaman_kerja/{id}', [PengalamanKerjaController::class, 'destroy'])->name('pengalaman_kerja.destroy');
+
 
