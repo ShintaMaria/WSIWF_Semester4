@@ -8,7 +8,8 @@
     use App\Http\Controllers\backend\PengalamanKerjaController;
     use App\Http\Controllers\backend\DashboardController;
     use App\Http\Controllers\backend\PenddikanController;
-
+    use App\Http\Controllers\SessionController;
+    use App\Http\Controllers\PegawaiController;
 
     // ACARA 3
 
@@ -182,3 +183,15 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.d
 // Route::delete('/pengalaman_kerja/{id}', [PengalamanKerjaController::class, 'destroy'])->name('pengalaman_kerja.destroy');
 
 
+// ACARA 17
+Route::get('session/create', [SessionController::class, 'create']);
+
+Route::get('session/show', [SessionController::class, 'show']);
+
+Route::get('session/delete', [SessionController::class, 'delete']);
+
+Route::get('/pegawai/{shinta}', [PegawaiController::class, 'index']);
+
+Route::get('/formulir', [PegawaiController::class, 'formulir']);
+
+Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
