@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 class SessionController extends Controller
 {
     // membuat session
@@ -21,7 +18,7 @@ class SessionController extends Controller
         }
     }
     // menghapus session
-    
+
     public function delete(Request $request) {
         $request->session()->forget('nama');
         echo "Data telah dihapus dari session.";

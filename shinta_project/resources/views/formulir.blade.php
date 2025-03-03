@@ -3,6 +3,7 @@
 <head>
     <title>Request dengan Input Laravel</title>
 </head>
+
 <body>
     <form action="/formulir/proses" method="post">
         @csrf
