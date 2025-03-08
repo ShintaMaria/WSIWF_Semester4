@@ -81,4 +81,18 @@ class UploadController extends Controller
             return redirect(route('upload'))->with('error', 'Data gagal ditambahkan!');
         }
     }
+    public function dropzone()
+    {
+        return view('dropzone'); // Pastikan file dropzone.blade.php ada di resources/views
+    }
+
+    public function dropzoneStore(Request $request)
+    {
+        $image = $request->file('file');
+
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('img/dropzone'), $imageName);
+
+        return response()->json(['success' => $imageName]);
+    }
 }
