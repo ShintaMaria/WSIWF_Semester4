@@ -148,7 +148,7 @@
     //ACARA 7
     Route::group(['namespace'=>'App\Http\Controllers\frontend'],function()
     {
-        Route::resource('/home',HomeController::class);
+        Route::resource('/homee',HomeController::class);
     });
 
     //ACARA 8
@@ -201,5 +201,6 @@ Route::post('/upload/resize', [UploadController::class, 'resize_upload'])->name(
 
 //ACARA 20
 Route::get('/dropzone', [UploadController::class, 'dropzone'])->name('dropzone');
-
 Route::post('/dropzone/store', [UploadController::class, 'dropzoneStore'])->name('dropzone.store');
+Route::get('/pdf_upload', [UploadController::class, 'pdf_upload'])->name('pdf.upload');
+Route::post('/pdf/store', [UploadController::class, 'pdf_store'])->name('pdf.store');
