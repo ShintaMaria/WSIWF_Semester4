@@ -40,12 +40,12 @@
 
     <script>
         Dropzone.options.imageUpload = {
-            autoProcessQueue: false, // Jangan otomatis unggah
-            maxFilesize: 10, // Maksimum ukuran file dalam MB
-            acceptedFiles: ".jpeg,.jpg,.png,.gif", // Jenis file yang diperbolehkan
-            addRemoveLinks: true, // Tambahkan opsi hapus
-            createImageThumbnails: true, // Buat thumbnail
-            parallelUploads: 10, // Maksimal file yang bisa diunggah bersamaan
+            autoProcessQueue: false, 
+            maxFilesize: 10, 
+            acceptedFiles: ".jpeg,.jpg,.png,.gif", 
+            addRemoveLinks: true, 
+            createImageThumbnails: true, 
+            parallelUploads: 10, 
             init: function () {
                 let myDropzone = this;
 
