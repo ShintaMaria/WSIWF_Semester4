@@ -83,7 +83,7 @@ class UploadController extends Controller
     }
     public function dropzone()
     {
-        return view('dropzone'); // Pastikan file dropzone.blade.php ada di resources/views
+        return view('dropzone'); 
     }
 
     public function dropzoneStore(Request $request)
