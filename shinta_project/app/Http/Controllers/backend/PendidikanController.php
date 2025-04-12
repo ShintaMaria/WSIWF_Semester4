@@ -44,7 +44,7 @@ class PendidikanController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'tingkatan' => 'required|string|max:10',
+            'tingkatan' => 'required|string|max:4',
             'tahun_masuk' => 'required|integer',
             'tahun_keluar' => 'required|integer',
         ]);

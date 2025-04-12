@@ -45,29 +45,32 @@
             acceptedFiles: ".jpeg,.jpg,.png,.gif", 
             addRemoveLinks: true, 
             createImageThumbnails: true, 
-            parallelUploads: 10, 
+            uploadMultiple: true, // Mengaktifkan upload banyak file sekaligus
+            parallelUploads: 100,  // Memungkinkan upload beberapa file dalam satu batch
+            maxFiles: 100, // Batasi jumlah file maksimal
+
             init: function () {
                 let myDropzone = this;
 
-                // Aksi ketika tombol upload diklik
+                // Tombol untuk memulai proses upload
                 document.getElementById("submit-all").addEventListener("click", function (e) {
                     e.preventDefault();
                     myDropzone.processQueue();
                 });
 
-                // Menambahkan input form ke dalam formData Dropzone saat mengirim
-                myDropzone.on("sending", function (file, xhr, formData) {
+                // Menambahkan input form ke dalam formData Dropzone saat mengirim file
+                myDropzone.on("sendingmultiple", function (files, xhr, formData) {
                     let data = $("#image-upload").serializeArray();
                     data.forEach(item => formData.append(item.name, item.value));
                 });
 
                 // Callback sukses
-                myDropzone.on("success", function (file, response) {
+                myDropzone.on("successmultiple", function (files, response) {
                     console.log("Upload sukses:", response);
                 });
 
                 // Callback error
-                myDropzone.on("error", function (file, errorMessage) {
+                myDropzone.on("errormultiple", function (files, errorMessage) {
                     console.error("Error upload:", errorMessage);
                 });
             }

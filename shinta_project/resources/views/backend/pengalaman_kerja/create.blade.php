@@ -1,7 +1,7 @@
 @extends('backend/layouts.template')
 
 @section('content')
-<section id="main-content">
+<section id="main" class="main">
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">

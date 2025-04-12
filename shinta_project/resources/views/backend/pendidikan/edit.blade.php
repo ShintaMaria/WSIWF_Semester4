@@ -1,7 +1,7 @@
 @extends('backend.layouts.template')
 
 @section('content')
-<section id="main-content">
+<section id="main" class="main">
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -54,6 +54,20 @@
                                     <option value="9" {{ $pendidikan->tingkatan == 9 ? 'selected' : '' }}>S3</option>
                                 </select>
                             </div>
+                            <!-- <div class="form-group">
+                                <label>Tingkatan</label>
+                                <select name="tingkatan" class="form-control" required>
+                                    <option {{ $pendidikan->tingkatan == 'TK' ? 'selected' : '' }}>TK</option>
+                                    <option {{ $pendidikan->tingkatan == 'SD' ? 'selected' : '' }}>SD</option>
+                                    <option {{ $pendidikan->tingkatan == 'SMP' ? 'selected' : '' }}>SMP</option>
+                                    <option {{ $pendidikan->tingkatan == 'SMA' ? 'selected' : '' }}>SMA</option>
+                                    <option {{ $pendidikan->tingkatan == 'SMK' ? 'selected' : '' }}>SMK</option>
+                                    <option {{ $pendidikan->tingkatan == 'D3' ? 'selected' : '' }}>D3</option>
+                                    <option {{ $pendidikan->tingkatan == 'S1' ? 'selected' : '' }}>S1</option>
+                                    <option {{ $pendidikan->tingkatan == 'S2' ? 'selected' : '' }}>S2</option>
+                                    <option {{ $pendidikan->tingkatan == 'S3' ? 'selected' : '' }}>S3</option>
+                                </select>
+                            </div> -->
 
                             <div class="form-group">
                                 <label>Tahun Masuk</label>

@@ -43,7 +43,7 @@
                 @endif
 
                 {{-- Form Upload --}}
-                <form action="{{ route('upload.proses') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('upload.resize') }}" method="POST" enctype="multipart/form-data">
 
                     @csrf  {{-- CSRF Token Laravel --}}
 

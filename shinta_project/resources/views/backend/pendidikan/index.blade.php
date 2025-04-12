@@ -1,7 +1,7 @@
 @extends('backend/layouts.template')
 
 @section('content')
-<section id="main-content">
+<section id="main" class="main">
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -70,6 +70,23 @@
                                             S3
                                         @endif
                                     </td>
+                                    <!-- <td> 
+                                        @php
+                                            $tingkatan = [
+                                                'TK' => 'TK',
+                                                'SD' => 'SD',
+                                                'SMP' => 'SMP',
+                                                'SMA' => 'SMA',
+                                                'SMK' => 'SMK',
+                                                'D3' => 'D3',
+                                                'S1' => 'S1',
+                                                'S2' => 'S2',
+                                                'S3' => 'S3'
+                                            ];
+                                        @endphp
+
+                                        {{ $tingkatan[$item->tingkatan] ?? '-' }}
+                                    </td> -->
                                     <td>{{ $item->tahun_masuk }}</td>
                                     <td>{{ $item->tahun_keluar }}</td>
                                     <td>

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class UploadController extends Controller
 {
@@ -15,6 +16,11 @@ class UploadController extends Controller
 
     public function proses_upload(Request $request)
     {
+        $request->validate([
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'keterangan' => 'required',
+        ]);
+
         $this->validate($request, [
             'file' => 'required',
             'keterangan' => 'required',
@@ -41,72 +47,100 @@ class UploadController extends Controller
         // upload file
         $file->move($tujuan_upload, $file->getClientOriginalName());
     }
-
+    public function viewresize()
+    {
+        return view('upload_resize');
+    }
     public function resize_upload(Request $request)
     {
-        $this->validate($request, [
-            'file' => 'required|image', // validasi agar hanya menerima file gambar
+        $request->validate([
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
             'keterangan' => 'required',
         ]);
 
-        // tentukan path lokasi upload
-        $path = public_path('images');
+        // Membuat instance ImageManager dengan driver GD
+        $imageManager = new ImageManager(new Driver()); // Jika mau Imagick, ganti Driver() jadi Imagick\Driver()
 
-        // jika folder belum ada, buat folder
+        // Tentukan path lokasi upload
+        $path = public_path('img/logo');
+
+        // Jika folder belum ada, buat folder
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true);
         }
 
-        // mengambil file image dari form
+        // Ambil file dari form
         $file = $request->file('file');
 
-        // membuat nama file dari gabungan tanggal dan unique ID
+        // Buat nama file unik
         $fileName = 'logo_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-        // membuat canvas sebesar dimensi 200x200
-        $canvas = Image::canvas(200, 200);
+        // Baca gambar dan resize
+        $image = $imageManager->read($file->getRealPath());
+        $resizedImage = $image->cover(200, 200);
 
-        // resize image sesuai dimensi dengan mempertahankan rasio
-        $resizeImage = Image::make($file)->resize(null, 200, function ($constraint) {
-            $constraint->aspectRatio();
-        });
+        // Simpan gambar hasil resize
+        file_put_contents($path . '/' . $fileName, $resizedImage->toJpeg());
 
-        // memasukkan image yang telah di-resize ke dalam canvas
-        $canvas->insert($resizeImage, 'center');
-
-        // simpan image ke folder
-        if ($canvas->save($path . '/' . $fileName)) {
-            return redirect(route('upload'))->with('success', 'Data berhasil ditambahkan!');
-        } else {
-            return redirect(route('upload'))->with('error', 'Data gagal ditambahkan!');
+        return redirect()->route('upload.resize.view')->with('success', 'Data berhasil ditambahkan!');
+    }
+        public function dropzone()
+        {
+            return view('dropzone'); 
         }
-    }
-    public function dropzone()
-    {
-        return view('dropzone'); 
-    }
 
-    public function dropzoneStore(Request $request)
-    {
-        $image = $request->file('file');
+        public function dropzoneStore(Request $request)
+        {
+            if ($request->hasFile('file')) {
+                $uploadedFiles = []; // Array untuk menyimpan nama file
 
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('img/dropzone'), $imageName);
+                foreach ($request->file('file') as $image) {
+                    $imageName = time() . '_' . $image->getClientOriginalName();
+                    $image->move(public_path('img/dropzone'), $imageName);
+                    $uploadedFiles[] = $imageName;
+                }
 
-        return response()->json(['success' => $imageName]);
-    }
+                return response()->json(['success' => 'Files uploaded successfully', 'files' => $uploadedFiles]);
+            }
 
-        public function pdf_upload()
-    {
-        return view('pdf_upload');
-    }
+            return response()->json(['error' => 'No files uploaded'], 400);
+        }
 
-    public function pdf_store(Request $request)
-    {
-        $pdf = $request->file('file');
+            public function pdf_upload()
+        {
+            return view('pdf_upload');
+        }
 
-        $pdfName = 'pdf_' . time() . '.' . $pdf->extension();
-        $pdf->move(public_path('pdf/dropzone'), $pdfName);
-        return response()->json(['success' => $pdfName]);
-    }
+        public function pdf_store(Request $request)
+        {
+            // Pastikan ada file yang diunggah
+            if (!$request->hasFile('file')) {
+                return response()->json(['error' => 'Tidak ada file yang diunggah'], 400);
+            }
+
+            $files = $request->file('file'); // Bisa berupa array atau file tunggal
+            $uploadedFiles = [];
+            $path = public_path('pdf/dropzone');
+
+            // Cek apakah folder penyimpanan ada, jika tidak buat baru
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            // Jika banyak file dikirim, proses satu per satu
+            if (is_array($files)) {
+                foreach ($files as $file) {
+                    $pdfName = 'pdf_' . time() . '_' . uniqid() . '.' . $file->extension();
+                    $file->move($path, $pdfName);
+                    $uploadedFiles[] = $pdfName;
+                }
+            } else { // Jika hanya satu file
+                $pdfName = 'pdf_' . time() . '_' . uniqid() . '.' . $files->extension();
+                $files->move($path, $pdfName);
+                $uploadedFiles[] = $pdfName;
+            }
+
+            return response()->json(['success' => $uploadedFiles]);
+        }
+
 }

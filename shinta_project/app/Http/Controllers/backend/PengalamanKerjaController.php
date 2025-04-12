@@ -9,7 +9,7 @@ class PengalamanKerjaController extends Controller
 {
     public function index()
     {
-        // Ambil semua data pengalaman kerja dari database
+        
         $pengalaman_kerja = DB::table('pengalaman_kerja')->get();
 
         // Kirim data ke view

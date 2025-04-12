@@ -1,7 +1,7 @@
 @extends('backend/layouts.template')
 
 @section('content')
-<section id="main-content">
+<section id="main" class="main">
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -48,17 +48,19 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-2">Tingkatan <span class="required">*</span></label>
                                 <div class="col-lg-10">
-                                    <select class="form-control m-bot15" name="tingkatan" id="tingkatan" required>
-                                        <option value="TK">TK</option>
-                                        <option value="SD">SD</option>
-                                        <option value="SMP">SMP</option>
-                                        <option value="SMA">SMA</option>
-                                        <option value="SMK">SMK</option>
-                                        <option value="D3">D3</option>
-                                        <option value="S1">S1</option>
-                                        <option value="S2">S2</option>
-                                        <option value="S3">S3</option>
+                                    <select class="form-control" name="tingkatan" id="tingkatan" required>
+                                        @foreach ([
+                                            1 => 'TK', 2 => 'SD', 3 => 'SMP', 4 => 'SMA', 5 => 'SMK', 
+                                            6 => 'D3', 7 => 'S1', 8 => 'S2', 9 => 'S3'
+                                        ] as $key => $value)
+                                            <option value="{{ $key }}" {{ old('tingkatan', $pendidikan->tingkatan ?? '') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                        @endforeach
                                     </select>
+                                    <!-- <select class="form-control" name="tingkatan" id="tingkatan" required>
+                                        @foreach (['TK', 'SD', 'SMP', 'SMA', 'SMK', 'D3', 'S1', 'S2', 'S3'] as $value)
+                                            <option {{ old('tingkatan', $pendidikan->tingkatan ?? '') == $value ? 'selected' : '' }}>{{ $value }}</option>
+                                        @endforeach
+                                    </select> -->
                                 </div>
                             </div>
 

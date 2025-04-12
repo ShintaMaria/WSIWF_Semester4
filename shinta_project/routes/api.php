@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\ApiPendidikanController;
+use App\Http\Controllers\backend\ApiPendidikanController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,7 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-//ACARA 21
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
